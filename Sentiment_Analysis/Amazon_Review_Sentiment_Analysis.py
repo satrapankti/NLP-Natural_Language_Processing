@@ -24,18 +24,18 @@ from sklearn.ensemble import GradientBoostingClassifier
 import base64
 def add_bg_from_local():
     st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url("https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/amazon.png");
-        background-position: 55% 75%;
-        background-size: contain;
-        background-repeat: no-repeat
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/amazon.png");
+            background-position: 55% 75%;
+         background-size: contain;
+            background-repeat: no-repeat
+     }}
+        </style>
+        """,
+        unsafe_allow_html=True
+        )
 add_bg_from_local() 
 
 
