@@ -1,0 +1,6 @@
+pandas
+sklearn
+streamlit 
+contractions
+nltk
+textblob
