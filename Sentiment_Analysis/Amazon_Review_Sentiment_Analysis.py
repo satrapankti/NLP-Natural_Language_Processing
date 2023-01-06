@@ -17,6 +17,7 @@ from textblob import TextBlob, Word
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import  TfidfVectorizer
 nltk.download("stopwords")
+nltk.download('punkt')
 
 import streamlit as st 
 from sklearn.ensemble import GradientBoostingClassifier
