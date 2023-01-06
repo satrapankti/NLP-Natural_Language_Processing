@@ -29,7 +29,7 @@ def add_bg_from_local(image_file):
     f"""
     <style>
     .stApp {{
-        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
+        background-image: url("https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/amazon.png");
         background-position: 55% 75%;
         background-size: contain;
         background-repeat: no-repeat
