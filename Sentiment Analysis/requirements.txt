@@ -4,3 +4,7 @@ streamlit
 contractions
 nltk
 textblob
+regex
+scikit-learn
+spacy
+numpy
