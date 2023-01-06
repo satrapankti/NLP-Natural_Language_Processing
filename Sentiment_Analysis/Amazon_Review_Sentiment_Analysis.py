@@ -38,7 +38,7 @@ def add_bg_from_local(image_file):
     """,
     unsafe_allow_html=True
     )
-add_bg_from_local("amazon.png") 
+add_bg_from_local() 
 
 
 st.title("**Sentiment Analysis of Amazon Reviews**")
