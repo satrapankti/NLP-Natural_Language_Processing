@@ -76,7 +76,7 @@ product_type = st.selectbox("**:green[Product Type]**",("0","1","2","3","4","5",
 
 #######################################################################################
 
-file = "https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/Product_details.csv"
+file = "https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/Product_details.csv?raw=true"
 az = pd.read_csv(file) 
 amazon = pd.DataFrame(az["Product_Description"])
 amazon.loc[len(amazon)] = [input_review]
