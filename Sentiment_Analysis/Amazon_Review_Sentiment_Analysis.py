@@ -3,6 +3,7 @@
 import re
 import nltk  
 import string 
+import base64
 import itertools
 import contractions
 import pandas as pd
@@ -21,7 +22,7 @@ import streamlit as st
 from sklearn.ensemble import GradientBoostingClassifier
 ########################### 
 
-import base64
+
 def add_bg_from_local():
     st.markdown(
         f"""
@@ -29,13 +30,13 @@ def add_bg_from_local():
         .stApp {{
             background-image: url("https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/amazon.png");
             background-position: 55% 75%;
-         background-size: contain;
+            background-size: contain;
             background-repeat: no-repeat
-     }}
-        </style>
-        """,
+            }}
+            </style>
+            """,
         unsafe_allow_html=True
-        )
+    )
 add_bg_from_local() 
 
 
