@@ -75,7 +75,8 @@ product_type = st.selectbox("**:green[Product Type]**",("0","1","2","3","4","5",
 
 #######################################################################################
 
-az = pd.read_csv("Product_details.csv") 
+file = "https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/Product_details.csv"
+az = pd.read_csv(file) 
 amazon = pd.DataFrame(az["Product_Description"])
 amazon.loc[len(amazon)] = [input_review]
 amazon["Product_Description"] = amazon["Product_Description"].values.astype(str)
@@ -103,7 +104,7 @@ st.write(inp)
 
 ##################################################################################################################
 
-sent = pd.read_csv("Product_details.csv") 
+sent = pd.read_csv(file) 
 sent.drop(["Text_ID"],inplace=True,axis = 1)
 sent["Sentiment"] = sent["Sentiment"].replace(0,1)
 labelencoder = LabelEncoder()
