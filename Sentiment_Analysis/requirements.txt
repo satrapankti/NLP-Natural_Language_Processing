@@ -1,10 +1,10 @@
 pandas
-sklearn
-streamlit 
-contractions
-nltk
-textblob
+numpy
 regex
 scikit-learn
+sklearn
+nltk
 spacy
-numpy
+textblob
+contractions
+streamlit 
