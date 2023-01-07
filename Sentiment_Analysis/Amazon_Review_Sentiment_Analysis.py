@@ -74,7 +74,7 @@ def vec(text):
     return pd.DataFrame(tf)
 
 
-input_review = st.text_area("**:green[Review]**", "Type Here")
+input_review = st.text_input("**:green[Review]**", "Type Here")
 product_type = st.selectbox("**:green[Product Type]**",("0","1","2","3","4","5","6","7","8","9"))
 
 #######################################################################################
