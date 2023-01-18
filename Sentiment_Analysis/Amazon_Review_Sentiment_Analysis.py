@@ -21,10 +21,8 @@ nltk.download("stopwords")
 nltk.download('punkt')
 nltk.download('wordnet')
 
-import streamlit as st
-from sklearn.utils import class_weight
-from sklearn.utils.class_weight import compute_sample_weight
-from xgboost import XGBClassifier
+import streamlit as st 
+from sklearn.ensemble import GradientBoostingClassifier
 ########################### 
 
 
@@ -112,6 +110,9 @@ st.write(inp)
 
 sent = pd.read_csv(file) 
 sent.drop(["Text_ID"],inplace=True,axis = 1)
+sent["Sentiment"] = sent["Sentiment"].replace(0,1)
+labelencoder = LabelEncoder()
+sent["Sentiment"] = labelencoder.fit_transform(sent["Sentiment"])
 sent["Product_Description"] = sent["Product_Description"].values.astype(str)
 sent["Product_Description"] = sent["Product_Description"].apply(review_cleaning)
 sent["Polarity_score"] = sent["Product_Description"].apply(Polarity)
@@ -119,10 +120,7 @@ tf = vec(sent["Product_Description"])
 X = pd.concat((tf,sent["Product_Type"],sent["Polarity_score"]),axis = 1)
 X.columns = X.columns.astype(str)
 Y = sent["Sentiment"]
-
-classes_weights = class_weight.compute_sample_weight(class_weight = "balanced", y = sent["Sentiment"])
-
-model = XGBClassifier(X,Y,sample_weight=classes_weights)
+model = GradientBoostingClassifier()
 model.fit(X,Y)
 
 ###################################################################################################################
