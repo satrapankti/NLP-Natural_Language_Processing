@@ -27,22 +27,21 @@ from sklearn.ensemble import GradientBoostingClassifier
 ########################### 
 
 
-def add_bg():
+def add_bg_from_local():
     st.markdown(
         f"""
         <style>
         .stApp {{
-            background-image: url("https://i.ibb.co/2MDynwQ/amazon.png");
+            background-image: url("https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/amazon.png?raw=true");
             background-position: 55% 75%;
             background-size: contain;
             background-repeat: no-repeat
-        }}
-        </style>
-        """,
+            }}
+            </style>
+            """,
         unsafe_allow_html=True
-        )
-
-add_bg() 
+    )
+add_bg_from_local()
 
 
 st.title("**Sentiment Analysis of Amazon Reviews**")
