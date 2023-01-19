@@ -31,7 +31,7 @@ def add_bg():
         f"""
         <style>
         .stApp {{
-            background-image: url("https://ibb.co/B6Xtzmx");
+            background-image: url("https://i.ibb.co/2MDynwQ/amazon.png");
             background-position: 55% 75%;
             background-size: contain;
             background-repeat: no-repeat
