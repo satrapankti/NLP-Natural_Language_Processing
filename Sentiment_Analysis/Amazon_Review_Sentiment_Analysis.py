@@ -20,6 +20,7 @@ from sklearn.feature_extraction.text import  TfidfVectorizer
 nltk.download("stopwords")
 nltk.download('punkt')
 nltk.download('wordnet')
+import base64
 
 import streamlit as st 
 from sklearn.ensemble import GradientBoostingClassifier
