@@ -27,19 +27,19 @@ from sklearn.ensemble import GradientBoostingClassifier
 
 
 def add_bg():
-st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url("https://ibb.co/B6Xtzmx");
-        background-position: 55% 75%;
-        background-size: contain;
-        background-repeat: no-repeat
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://ibb.co/B6Xtzmx");
+            background-position: 55% 75%;
+            background-size: contain;
+            background-repeat: no-repeat
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+        )
 
 add_bg() 
 
