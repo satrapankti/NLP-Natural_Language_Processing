@@ -108,7 +108,7 @@ X_test = X.iloc[-1:]
 Y = az
 
 model = GradientBoostingClassifier()
-model.fit(X_train, Y)
+model.fit(X_train, Y.values.ravel())
 
 #################################################################################################################################################
 
