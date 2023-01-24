@@ -77,64 +77,50 @@ product_type = st.selectbox("**:green[Product Type]**",("0","1","2","3","4","5",
 #################################################################################################################################################
 
 file = "https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/Product_details.csv?raw=true"
-az = pd.read_csv(file) 
-amazon = pd.DataFrame(az["Product_Description"])
-amazon.loc[len(amazon)] = [input_review]
-amazon["Product_Description"] = amazon["Product_Description"].values.astype(str)
-amazon["Product_Description"] = amazon["Product_Description"].apply(review_cleaning)
+amazon = pd.read_csv(file) 
 
-result = amazon["Product_Description"].iloc[-1:].to_string(index = False)
-tfi = vec(amazon["Product_Description"])
-tfi.columns = tfi.columns.astype(str)
-tf = tfi.iloc[-1:]
-polar = Polarity(result)
-tf["Product_Type"] = product_type
-tf["Polarity_score"] = polar
+az = pd.DataFrame(amazon["Sentiment"])
+
+amazon.drop(["Text_ID"], inplace = True, axis = 1)
+amazon["Sentiment"] = amazon["Sentiment"].replace(0,1)
+labelencoder = LabelEncoder()
+amazon["Sentiment"] = labelencoder.fit_transform(amazon["Sentiment"])
+
+copy = pd.DataFrame(amazon)
+amazon.drop(["Sentiment"], inplace = True, axis = 1)
+data =  pd.DataFrame({"Product_Description":input_review, "Product_Type":float(product_type)},index = [0])
+
+st.markdown("**:green[User Input parameters]**")
+inp = pd.DataFrame(data)
+st.write(inp)
 
 ##################################################################################################################################################
 
-def user_input_features_text():
-    tf.columns = tf.columns.astype(str)
-    return tf 
-
-
-df = user_input_features_text()
-st.markdown("**:green[User Input parameters]**")
-inp = pd.DataFrame({"Review":result, "Product Type":product_type, "Polarity Score":round(polar,4)},index = [0])
-st.write(inp)
-
-################################################################################################################################################
-
-sent = pd.read_csv(file) 
-sent.drop(["Text_ID"],inplace=True,axis = 1)
-sent["Sentiment"] = sent["Sentiment"].replace(0,1)
-labelencoder = LabelEncoder()
-sent["Sentiment"] = labelencoder.fit_transform(sent["Sentiment"])
-sent["Product_Description"] = sent["Product_Description"].values.astype(str)
-sent["Product_Description"] = sent["Product_Description"].apply(review_cleaning)
-sent["Polarity_score"] = sent["Product_Description"].apply(Polarity)
-tf = vec(sent["Product_Description"])
-X = pd.concat((tf,sent["Product_Type"],sent["Polarity_score"]),axis = 1)
+amazon = pd.concat((amazon, data), axis = 0, ignore_index=True)
+amazon["Product_Description"] = amazon["Product_Description"].values.astype(str)
+amazon["Product_Description"] = amazon["Product_Description"].apply(review_cleaning)
+amazon["Polarity_score"] = amazon["Product_Description"].apply(Polarity)
+tf = vec(amazon["Product_Description"])
+X = pd.concat((tf, amazon.iloc[:,1:]),axis = 1)
 X.columns = X.columns.astype(str)
-Y = sent["Sentiment"]
+X_train = X.iloc[:-1]
+X_test = X.iloc[-1:] 
+Y = az
+
 model = GradientBoostingClassifier()
-model.fit(X,Y)
+model.fit(X_train, Y)
 
 #################################################################################################################################################
 
 if st.button("**Predict**"):
-    prediction = model.predict(df)
+    prediction = model.predict(X_test)
     st.subheader("Sentiment")
     st.subheader(prediction[0])
-    st.subheader("Predicted Result")
-    if prediction ==  0: 
-        st.write("**:red[Negative]**")
-    elif prediction == 1:
-        st.write("**:red[Neutral]**") 
-    else:
-        st.write("**:red[Positive]**")
+
 
 if st.button("**Download ⬇**"):
-    prediction = model.predict(df)
-    output=pd.concat([df,pd.DataFrame(prediction)],axis=1)
-    output.to_csv("prediction.csv")
+    prediction = model.predict(X_test)
+    data.insert(2, "Sentiment", pd.DataFrame(prediction), True)
+    output=pd.concat([copy,data],axis=0, ignore_index=True)
+    output.to_csv("Product_details.csv")
+    st.markdown("**:red[Downloaded!!]**")
