@@ -8,24 +8,21 @@ import base64
 import itertools
 import contractions
 import pandas as pd
+import streamlit as st
 from pickle import dump,load
 
 from nltk import tokenize
 from nltk.corpus import stopwords
 from unicodedata import normalize
 
-
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import  TfidfVectorizer
 nltk.download("stopwords")
 nltk.download('punkt')
 nltk.download('wordnet')
-import base64
 
-import streamlit as st 
 from sklearn.ensemble import GradientBoostingClassifier
-########################### 
-
+##############################################################
 
 def add_bg():
     st.markdown(
@@ -42,7 +39,6 @@ def add_bg():
         unsafe_allow_html=True
     )
 add_bg()
-
 
 st.title("**Sentiment Analysis of Amazon Reviews**")
 
@@ -78,7 +74,7 @@ def vec(text):
 input_review = st.text_input("**:green[Review]**", "Type Here")
 product_type = st.selectbox("**:green[Product Type]**",("0","1","2","3","4","5","6","7","8","9"))
 
-#######################################################################################
+#################################################################################################################################################
 
 file = "https://github.com/satrapankti/NLP-Natural_Language_Processing/blob/main/Sentiment_Analysis/Product_details.csv?raw=true"
 az = pd.read_csv(file) 
@@ -95,7 +91,7 @@ polar = Polarity(result)
 tf["Product_Type"] = product_type
 tf["Polarity_score"] = polar
 
-########################################################################################
+##################################################################################################################################################
 
 def user_input_features_text():
     tf.columns = tf.columns.astype(str)
@@ -107,7 +103,7 @@ st.markdown("**:green[User Input parameters]**")
 inp = pd.DataFrame({"Review":result, "Product Type":product_type, "Polarity Score":round(polar,4)},index = [0])
 st.write(inp)
 
-##################################################################################################################
+################################################################################################################################################
 
 sent = pd.read_csv(file) 
 sent.drop(["Text_ID"],inplace=True,axis = 1)
@@ -124,7 +120,7 @@ Y = sent["Sentiment"]
 model = GradientBoostingClassifier()
 model.fit(X,Y)
 
-###################################################################################################################
+#################################################################################################################################################
 
 if st.button("**Predict**"):
     prediction = model.predict(df)
