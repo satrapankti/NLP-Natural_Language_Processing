@@ -27,7 +27,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 ########################### 
 
 
-def add_bg_from_local():
+def add_bg():
     st.markdown(
         f"""
         <style>
@@ -41,7 +41,7 @@ def add_bg_from_local():
             """,
         unsafe_allow_html=True
     )
-add_bg_from_local()
+add_bg()
 
 
 st.title("**Sentiment Analysis of Amazon Reviews**")
