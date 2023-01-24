@@ -9,4 +9,4 @@ file has model based on Gradient Boosting Classifier Algorithm where the sentime
 ## Amazon_Review_Sentiment_Analysis_XGBoost.py 
 file has model based on XGBoost Classifier where the problem of class imbalance is solved without concatination using sklearn.utils.class_weight where weights have been defined based on class sentiment.
 
-*Both of the above files are coded in a way which can predict sentiments as well as can be deployed using Streamlit.*
+`*Both of the above files are coded in a way which can predict sentiments as well as can be deployed using Streamlit.*`
