@@ -1,6 +1,7 @@
 
 #import libraries
 import re
+from textblob import TextBlob, Word
 import nltk  
 import string 
 import itertools
@@ -11,9 +12,8 @@ from pickle import dump,load
 from nltk import tokenize
 from nltk.corpus import stopwords
 from unicodedata import normalize
-from textblob import TextBlob, Word
 
-from sklearn.preprocessing import LabelEncoder
+
 from sklearn.feature_extraction.text import  TfidfVectorizer
 nltk.download("stopwords")
 
