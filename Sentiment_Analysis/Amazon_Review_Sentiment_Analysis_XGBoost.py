@@ -1,12 +1,14 @@
 
 #import libraries
-import re
 from textblob import TextBlob, Word
+import re
 import nltk  
 import string 
+import base64
 import itertools
 import contractions
 import pandas as pd
+import streamlit as st 
 from pickle import dump,load
 
 from nltk import tokenize
@@ -16,17 +18,14 @@ from unicodedata import normalize
 
 from sklearn.feature_extraction.text import  TfidfVectorizer
 nltk.download("stopwords")
+nltk.download('punkt')
+nltk.download('wordnet')
 
 from sklearn.utils import class_weight
 from sklearn.utils.class_weight import compute_sample_weight
 from sklearn.feature_extraction.text import  TfidfVectorizer
 from xgboost import XGBClassifier
-
-import streamlit as st 
-import base64
 ########################### 
-
-
 
 def add_bg():
     st.markdown(
@@ -105,17 +104,15 @@ Y = az
 model = XGBClassifier()
 model.fit(X_train, Y, sample_weight = compute_sample_weight("balanced", Y))
 
-dump(model, open("Amazon.sav", "wb"))
-loaded_model = load(open("Amazon.sav", "rb"))
 
 if st.button("**Predict**"):
-    prediction = loaded_model.predict(X_test)
+    prediction = model.predict(X_test)
     st.subheader("Sentiment")
     st.subheader(prediction[0])
 
 
 if st.button("**Download ⬇**"):
-    prediction = loaded_model.predict(X_test)
+    prediction = model.predict(X_test)
     data.insert(2, "Sentiment", pd.DataFrame(prediction), True)
     output=pd.concat([copy,data],axis=0, ignore_index=True)
     output.to_csv("Product_details.csv")
