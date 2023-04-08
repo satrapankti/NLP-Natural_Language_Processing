@@ -1,4 +1,5 @@
 # Amazon Review Sentiment Analysis
+![Amazon logo](https://user-images.githubusercontent.com/88264074/230715202-bca3968c-0d3b-45cb-95df-4ca86fd3fc81.png)
 
 ## Amazon Sentimental Analysis.ipynb
 This file has EDA, Visualization, Model Building,Selection & Accuracy
